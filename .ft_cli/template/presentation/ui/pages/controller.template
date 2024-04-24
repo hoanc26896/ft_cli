@@ -1,8 +1,10 @@
-class {{controllerNameClass}} {
-  bool loading = false;
+import 'package:get/get.dart';
 
-  void setLoading(bool value) {
-    loading = value;
+class {{controllerNameClass}} extends GetxController {
+  final _loading = false.obs;
+  get loading => _loading.value; // use getter
+
+  setLoading(bool loading){
+    _loading.value = loading;
   }
 }
-          

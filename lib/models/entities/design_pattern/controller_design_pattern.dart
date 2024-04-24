@@ -4,11 +4,14 @@ import 'package:ft_cli/models/entities/design_pattern/design_pattern.dart';
 
 class ControllerDesignPattern extends DesignPattern {
   static const String _template = r'''
-class {{controllerNameClass}} {
-  bool loading = false;
+import 'package:get/get.dart';
 
-  void setLoading(bool value) {
-    loading = value;
+class {{controllerNameClass}} extends GetxController {
+  final _loading = false.obs;
+  get loading => _loading.value; // use getter
+
+  setLoading(bool loading){
+    _loading.value = loading;
   }
 }
           ''';
@@ -25,7 +28,7 @@ class {{controllerNameClass}} {
   String path() {
     return persistValue(
       'controllerPath',
-      'presentation/ui/pages/{{name.snakeCase}}',
+      'pages/controller/{{name.snakeCase}}',
     );
   }
 

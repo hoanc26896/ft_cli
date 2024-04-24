@@ -4,26 +4,16 @@ import 'package:ft_cli/models/entities/design_pattern/design_pattern.dart';
 
 class PageDesignPattern extends DesignPattern {
   static const String _template = '''
-import 'package:flutter/material.dart';
-import '{{controllerNameFile}}.{{controllerExtension}}';
+import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
+import 'package:office/{{controllerPath}}/{{controllerNameFile}}.{{controllerExtension}}';
 
-class {{pageNameClass}} extends StatefulWidget {
+class {{pageNameClass}} extends GetView<{{controllerNameClass}}> {
   const {{pageNameClass}}({super.key});
 
   @override
-  State<{{pageNameClass}}> createState() => _{{pageNameClass}}State();
-}
-
-class _{{pageNameClass}}State extends State<{{pageNameClass}}> {
-  final _controller = {{controllerNameClass}}();
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('{{pageNameClass.sentenceCase}}'),
-      ),
-      body: Container(),
-    );
+    return const Placeholder();
   }
 }
   ''';
@@ -32,7 +22,7 @@ class _{{pageNameClass}}State extends State<{{pageNameClass}}> {
   String nameFile() {
     return persistValue(
       'pageNameFile',
-      '{{name.snakeCase}}_page',
+      '{{name.snakeCase}}_view',
     );
   }
 
@@ -40,7 +30,7 @@ class _{{pageNameClass}}State extends State<{{pageNameClass}}> {
   String path() {
     return persistValue(
       'pagePath',
-      'presentation/ui/pages/{{name.snakeCase}}',
+      'pages/ui/{{name.snakeCase}}',
     );
   }
 
@@ -48,7 +38,7 @@ class _{{pageNameClass}}State extends State<{{pageNameClass}}> {
   String nameClass() {
     return persistValue(
       'pageNameClass',
-      '{{name.pascalCase}}Page',
+      '{{name.pascalCase}}View',
     );
   }
 
